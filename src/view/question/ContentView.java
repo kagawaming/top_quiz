@@ -1,13 +1,20 @@
 package view.question;
 
+import model.Question;
 import view.PuzzleEx;
+import view.performance.TimeView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class ContentView extends JPanel {
+public class ContentView extends JPanel implements Observer {
 
     private JTextArea contentArea;
+
+//    private Question question;
+
 
     public ContentView() {
         setBackground(new Color(255,255,255));
@@ -15,18 +22,25 @@ public class ContentView extends JPanel {
 //        contentArea.setFont(Utils.getFormatFont());
         contentArea.setLineWrap(true);
 //        add(contentArea);
-        PuzzleEx puzzleEx = new PuzzleEx();
-        add(puzzleEx);
-        add(new ImageView());
-        update();
+//        PuzzleEx puzzleEx = new PuzzleEx();
+//        add(puzzleEx);
+
+
+        add(contentArea);
+//        add(new ImageView());
+
     }
-    public void update() {
-//        if(object == null)
-//            questionArea.setText(NO_QUESTION);
-//        else{
-//            Question question = (Question) object;
-//            questionArea.setText(question.getQuestionContent());
-//        }
-        contentArea.setText("No question yet lalala");
+
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg == null)
+            contentArea.setText("No question available T.T");
+
+        else{
+            Question question = (Question) arg;
+            contentArea.setText(question.getQuestionContent());
+
+        }
     }
 }

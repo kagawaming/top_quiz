@@ -4,7 +4,7 @@ import java.util.Observable;
 
 public class QuestionTime extends Observable {
     // Total answer time is 15s
-    public static final int TOTAL_TIME = 15;
+    public static final int TOTAL_TIME = 30;
     // Decrease by 1s each time
     public static final int DELAY_TIME = 1;
 
@@ -27,20 +27,26 @@ public class QuestionTime extends Observable {
         return false;
     }
 
-    public boolean isShowSmileEmotion(){
-        if(leftTime > (TOTAL_TIME/3) *2)
-            return true;
-        return false;
-    }
+//    public boolean isShowSmileEmotion(){
+//        if(leftTime > (TOTAL_TIME/3) *2)
+//            return true;
+//        return false;
+//    }
+//
+//    public boolean isShowCryEmotion(){
+//        if(leftTime < (TOTAL_TIME/3))
+//            return true;
+//        return false;
+//    }
+//
+//    public boolean isShowNeutralEmomotion(){
+//        if(!isShowSmileEmotion() && !isShowCryEmotion())
+//            return true;
+//        return false;
+//    }
 
-    public boolean isShowCryEmotion(){
+    public boolean isRedAlert() {
         if(leftTime < (TOTAL_TIME/3))
-            return true;
-        return false;
-    }
-
-    public boolean isShowNeutralEmomotion(){
-        if(!isShowSmileEmotion() && !isShowCryEmotion())
             return true;
         return false;
     }

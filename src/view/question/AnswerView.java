@@ -1,108 +1,85 @@
 package view.question;
 
-import util.FormatHelper;
+import common.Utils;
+import model.Question;
+
+
+import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.*;
-import java.util.ArrayList;
-
-public abstract class AnswerView extends JPanel {
-//    public abstract void displayChoice(Question question);
-
-    public abstract ArrayList<String> getUserAnswer();
-}
 
 
-//single choice viewer
-class SingleChoiceImpl extends AnswerView {
-    private ButtonGroup choiceGroup;
-    private ArrayList<JRadioButton> choiceButtons;
+public class AnswerView extends JPanel implements Observer {
+    private ImageView imageView;
+    private ChoiceView choiceView;
 
-    public SingleChoiceImpl() {
-//        Utils.initSubPanelBorder(this, TITLE);
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+    public AnswerView() {
+//        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout());
+        setBackground(new Color(255,255,255));
+        imageView = null;
+        choiceView = null;
+
     }
 
-//    @Override
-//    public void displayChoice(Question question) {
-//        choiceGroup = new ButtonGroup();
-//        choiceButtons = new ArrayList<>();
-//
-//        for (String choice : question.getChoices()) {
-//            JRadioButton button = new JRadioButton(choice);
-//            button.setFont(FormatHelper.setTextFont(10));
-//            choiceGroup.add(button);
-//            choiceButtons.add(button);
-//            add(button);
-//        }
-//    }
-
-    @Override
-    public ArrayList<String> getUserAnswer() {
-        ArrayList<String> userAnswer = new ArrayList<>();
-        for (JRadioButton button : choiceButtons) {
-            if (button.isSelected()) {
-                userAnswer.add(button.getText().trim());
-            }
-        }
-        return userAnswer;
-    }
-}
-
-class MultipleChoiceImpl extends AnswerView {
-//    private static final String TITLE = "Multiple Choice";
-    private ArrayList<JCheckBox> checkBoxes;
-
-    public MultipleChoiceImpl() {
-//        Utils.initSubPanelBorder(this, TITLE);
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-    }
-//    @Override
-//    public void displayChoice(Question question) {
-//        checkBoxes = new ArrayList<JCheckBox>();
-//        for (String choice: question.getChoices()) {
-//            JCheckBox box = new JCheckBox(choice);
-//            box.setFont(FormatHelper.setTextFont(10));
-//            checkBoxes.add(box);
-//            add(box);
-//        }
-//    }
-
-    @Override
-    public ArrayList<String> getUserAnswer() {
-        ArrayList<String> userAnswer = new ArrayList<>();
-
-        for (JCheckBox box : checkBoxes) {
-            if (box.isSelected()) {
-                String choice = box.getText();
-                userAnswer.add(choice);
-            }
+    public void update(Observable observable, Object object) {
+        if(object == null){
+            if(imageView != null)
+                remove(imageView);
+            if(choiceView != null)
+                remove(choiceView);
+            return;
         }
 
-        return userAnswer;
+        Question question = (Question) object;
+
+        //Update image of this question
+        if(imageView != null)
+            remove(imageView);
+
+        imageView = new ImageView();
+        String imagePath = question.getPictureFilePath();
+        imageView.setImage(imagePath);
+//        imageView.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(imageView, BorderLayout.NORTH);
+
+
+        //Update choiceView of question area
+        if(choiceView != null)
+            remove(choiceView);
+        choiceView = createChoiceView(question);
+        add(choiceView, BorderLayout.CENTER);
+        choiceView.displayChoice(question);
+        revalidate();
+        System.out.println("Multiple Choice");
     }
-}
 
-class InputTextImpl extends AnswerView {
-//    private static final int ROW_NUM = 10;
-//    private static final int COLUMN_NUM = 19;
+    private ChoiceView createChoiceView(Question question) {
+        ChoiceView choiceView;
+        String type = question.getQuestionType();
 
-//    private static final String TITLE = "Your Answer";
-    private JTextArea inputArea;
+        if(type.equals(Utils.INPUT_TYPE)) {
+            choiceView = new InputTextImpl();
+        }else if(type.equals(Utils.SINGLE_TYPE)) {
+            choiceView = new SingleChoiceImpl();
+        }else if(type.equals(Utils.MULTIPLE_TYPE)) {
+            choiceView = new MultipleChoiceImpl();
+        }else if(type.equals("puzzle")) {
+            choiceView = new PuzzleImpl();
+        }else if(type.equals("dAndD")) {
+            choiceView = new DAndDImpl();
+        }
+        else
+            return null;
 
-    public InputTextImpl() {
-//        Utils.initSubPanelBorder(this, TITLE);
-        inputArea = new JTextArea(10, 20);
-        add(inputArea);
+        return choiceView;
     }
-//    @Override
-//    public void displayChoice(Question question) {
-//        inputArea.setFont(FormatHelper.setTextFont(10));
-//    }
 
-    @Override
-    public ArrayList<String> getUserAnswer() {
-        ArrayList<String> userAnswer = new ArrayList<>();
-        userAnswer.add(inputArea.getText().trim());
-        return userAnswer;
+    public ChoiceView getChoiceView() {
+        return choiceView;
     }
+
+
 }

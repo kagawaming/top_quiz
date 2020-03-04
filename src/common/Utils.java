@@ -1,10 +1,12 @@
 package common;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.List;
 
 public class Utils {
     // Constants
@@ -12,12 +14,12 @@ public class Utils {
     public static final int FRAME_HEIGHT = 620;
 
     public static final String QUESTIONS_FILE = new File("resources","questionsData.txt").getAbsolutePath();
-    public static final String PICATURE_DIR = new File("resources", "pictures").getPath();
+    public static final String PICATURE_DIR = new File("src/resources", "pics").getPath();
     public static final String LOGO_FILE = new File(PICATURE_DIR, "quiz.jpg").getPath();
 
     public static final String INPUT_TYPE = "input";
     public static final String SINGLE_TYPE = "single";
-    public static final String MULTIPLE_TYPE = "multi";
+    public static final String MULTIPLE_TYPE = "multiChoice";
 
 
     public static final String PICTURE_KEY = "picture";
@@ -59,20 +61,20 @@ public class Utils {
 //        panel.setBorder(border);
 //    }
 //
-//    public static Font getBorderTitleFont(int fontSize){
-//        Font font = new Font("Times New Roman", Font.BOLD | Font.ITALIC, fontSize);
-//        return font;
-//    }
-//
-//    public static Font getFormatFont(){
-//        Font font = new Font("Times New Roman", Font.PLAIN, 16);
-//        return font;
-//    }
-//
-//    public static Font getFormatFont(int mode, int size){
-//        Font font = new Font("Times New Roman", Font.PLAIN | mode, size);
-//        return font;
-//    }
+    public static Font getBorderTitleFont(int fontSize){
+        Font font = new Font("Times New Roman", Font.BOLD | Font.ITALIC, fontSize);
+        return font;
+    }
+
+    public static Font getFormatFont(){
+        Font font = new Font("Times New Roman", Font.PLAIN, 16);
+        return font;
+    }
+
+    public static Font getFormatFont(int mode, int size){
+        Font font = new Font("Times New Roman", Font.PLAIN | mode, size);
+        return font;
+    }
 
     public static String readFile(String filePath){
         StringBuilder content = new StringBuilder();

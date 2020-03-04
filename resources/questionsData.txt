@@ -1,3 +1,4 @@
 <%>test question 1: which country have greatest territory<#>geography<#>multiChoice<#>China<c>USA<c>Canada<c>Russia<#>Russia<#>2<#> <#> <#>
 <%>test question 2: which country have greatest GDP<#>geography<#>multiChoice<#>China<c>USA<c>Canada<c>Russia<#>USA<#>2<#> <#> <#>
-<%>test question 3: which country have greatest Population<#>geography<#>multiChoice<#>China<c>USA<c>Canada<c>Russia<#>China<#>2<#> <#> <#>
+<%>test question 3: which country have greatest Population<#>music<#>puzzle<#>China<c>USA<c>Canada<c>Russia<#>Finish<#>2<#>1<#> <#>
+<%>test question 4: how to spell piano<#>music<#>dAndD<#>China<c>USA<c>Canada<c>Russia<#>piano<#>2<#> <#> <#>

@@ -1,5 +1,6 @@
 package view.main;
 
+import model.QuestionStatistic;
 import util.FormatHelper;
 import view.performance.ChartView;
 import view.performance.ResultView;
@@ -38,12 +39,17 @@ public class PerformanceView extends JPanel implements Observer {
         add(scoreView);
         add(Box.createVerticalStrut(15));
 
-        resultView = new ResultView();
-        add(resultView);
     }
 
     @Override
     public void update(Observable o, Object arg) {
+        QuestionStatistic quesStatistic = (QuestionStatistic) o;
+        scoreView.update(quesStatistic);
+        chartView.update(quesStatistic);
+//        summaryView.update(quesStatistic);
+    }
 
+    public TimeView getTimeView() {
+        return timeView;
     }
 }

@@ -76,6 +76,7 @@ public class PuzzleEx extends JPanel {
     private java.util.List<Point> solution;
 
     private final int NUMBER_OF_BUTTONS = 12;
+
     private final int DESIRED_WIDTH = 300;
 
     public PuzzleEx() {
@@ -104,6 +105,7 @@ public class PuzzleEx extends JPanel {
 
         panel = new JPanel();
         panel.setBorder(BorderFactory.createLineBorder(Color.gray));
+//        panel.setLayout(new GridLayout(4, 3, 0, 0));
         panel.setLayout(new GridLayout(4, 3, 0, 0));
 
         try {
@@ -230,18 +232,21 @@ public class PuzzleEx extends JPanel {
         }
     }
 
-    private void checkSolution() {
+    public ArrayList<String> checkSolution() {
 
         java.util.List<Point> current = new ArrayList<>();
+        ArrayList<String> ret = new ArrayList<>();
 
         for (JComponent btn : buttons) {
             current.add((Point) btn.getClientProperty("position"));
         }
 
         if (compareList(solution, current)) {
-            JOptionPane.showMessageDialog(panel, "Finished",
-                    "Congratulation", JOptionPane.INFORMATION_MESSAGE);
+//            JOptionPane.showMessageDialog(panel, "Finished",
+//                    "Congratulation", JOptionPane.INFORMATION_MESSAGE);
+            ret.add("Finish");
         }
+        return ret;
     }
 
     public static boolean compareList(java.util.List ls1, List ls2) {

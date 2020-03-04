@@ -6,6 +6,7 @@ import java.awt.*;
 import java.text.AttributedString;
 
 
+import model.QuestionStatistic;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -19,25 +20,26 @@ import util.FormatHelper;
 
 public class ChartView extends JPanel {
     public ChartView() {
-        this.setPreferredSize(new Dimension(200, 200));
-        update();
+        this.setPreferredSize(new Dimension(300, 250));
     }
 
-    public void update() {
+    public void update(QuestionStatistic questionStatistic) {
         removeAll();
-        drawChart();
+        drawChart(questionStatistic);
+        System.out.println("Close to chart");
     }
-    private void drawChart() {
-        int right = 10;
-        int wrong = 2;
+    private void drawChart(QuestionStatistic questionStatistic) {
+        int rightAns = questionStatistic.getRightAns();
+        int wrongAns = questionStatistic.getTotalAnsweredNum() - rightAns;
 
-        PieDataset pieDataSet = this.createDataset(10, 2);
+        // Init dataset
+        PieDataset pieDataSet = this.createDataset(rightAns, wrongAns);
         JFreeChart chart = createChart(pieDataSet);
 
 
         // add the chart
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(200, 200-10));
+        chartPanel.setPreferredSize(new Dimension(300, 250));
         add(chartPanel);
     }
 
@@ -50,7 +52,7 @@ public class ChartView extends JPanel {
     }
 
     private JFreeChart createChart(PieDataset dataset) {
-        String chartTitle = "Question Answer Results";
+        String chartTitle = "Right and Wrong Numbers";
 
         final JFreeChart chart = ChartFactory.createPieChart3D(
                 chartTitle,

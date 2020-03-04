@@ -2,9 +2,13 @@ package model;
 
 import common.Utils;
 
+
 import java.util.*;
 
-public class QuestionBank {
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+public class QuestionBank extends Observable{
     private static Map<String, List<Question>> topicQuestionMap = new HashMap<String, List<Question>>();
 
     private String currentTopic = null;
@@ -21,17 +25,17 @@ public class QuestionBank {
         loadQuestions(Utils.QUESTIONS_FILE);
     }
 
-//    /**
-//     * Choose an unanswered question in a specified topic and notify observers
-//     * @param topic topic of the question
-//     */
-//    public void publish(String topic){
-//        currentTopic = topic;
-//        chooseQuestion(topic);
-//
-//        setChanged();
-//        notifyObservers(currentQuestion);
-//    }
+    /**
+     * Choose an unanswered question in a specified topic and notify observers
+     * @param topic topic of the question
+     */
+    public void publish(String topic){
+        currentTopic = topic;
+        chooseQuestion(topic);
+
+        setChanged();
+        notifyObservers(currentQuestion);
+    }
 
     private static void loadQuestions(String inputQuestionsPath){
         String questionsContent = Utils.readFile(inputQuestionsPath);

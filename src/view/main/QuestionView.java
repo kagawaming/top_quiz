@@ -1,12 +1,11 @@
 package view.main;
 
 import util.FormatHelper;
+import view.question.AnswerView;
+import view.question.ChoiceView;
 import view.question.ContentView;
-import view.question.ImageView;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 /**
@@ -14,23 +13,28 @@ import java.awt.*;
  */
 public class QuestionView extends JPanel {
     private ContentView contentView;
-    private ImageView imageView;
-//    private AnswerView answerView;
+    private AnswerView answerView;
 
     public QuestionView() {
         FormatHelper.setMainPanelBorder(this, "QUESTION");
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+//        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout());
+//        add(Box.createVerticalStrut(10));
         setBackground(new Color(255,255,255));
         contentView = new ContentView();
-        add(contentView);
+        add(contentView, BorderLayout.NORTH);
 
+        answerView = new AnswerView();
+        add(answerView, BorderLayout.CENTER);
 
+    }
 
-//        imageView = new ImageView();
-//        add(imageView, BorderLayout.EAST);
+    public ContentView getContentView() {
+        return contentView;
+    }
 
-
-
+    public AnswerView getAnswerView() {
+        return answerView;
     }
 
 }

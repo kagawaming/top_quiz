@@ -75,6 +75,7 @@ public class Question {
 
     public String getPictureFilePath(){
         return new File(Utils.PICATURE_DIR, String.format("%s.jpeg", pictureName)).getPath();
+//        return "src/resources/pics/0.jpeg";
     }
 
     public String getAudioFilePath(){

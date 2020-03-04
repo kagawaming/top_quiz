@@ -1,5 +1,8 @@
 package view.main;
 
+import controller.TopicController;
+import model.QuestionBank;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,11 +14,13 @@ public class ControlView {
     private LoginView loginView;
     private QuestionView questionView;
 
+
     public ControlView() {
         cardLayout = new CardLayout();
         controlPanel = new JPanel();
         loginView = new LoginView();
         questionView = new QuestionView();
+
 
         controlPanel.setLayout(cardLayout);
 
@@ -24,12 +29,18 @@ public class ControlView {
 
         cardLayout.show(controlPanel, "1");
 
-        ActionListener listener = new ActionListener() {
+        ActionListener okListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                loginView.setUsername(loginView.getLoginTextField().getText());
+                MainFrame.getTopicView().setNameLabel("Hi " + loginView.getUsername());
                 cardLayout.show(controlPanel, "2");
             }
         };
-        loginView.addOkButtonListener(listener);
+        loginView.addOkButtonListener(okListener);
+
+    }
+    public QuestionView getQuestionView() {
+        return questionView;
     }
 }
