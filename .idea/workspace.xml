@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="350c52e3-7a33-4eba-96c3-982a53b7507b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controller/ResetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/top_quiz/common/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/top_quiz/common/Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/top_quiz/model/QuestionBank.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/top_quiz/model/QuestionBank.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/top_quiz/model/QuestionStatistic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/top_quiz/model/QuestionStatistic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/top_quiz/view/main/ButtonView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/top_quiz/view/main/ButtonView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/top_quiz/view/main/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/top_quiz/view/main/MainFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/SubmitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SubmitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/QuestionBank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/QuestionBank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/QuestionStatistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/QuestionStatistic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/main/ButtonView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/main/ButtonView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/main/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/main/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/top_quiz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/top_quiz.iml" afterDir="false" />
-    </list>
+    <list default="true" id="350c52e3-7a33-4eba-96c3-982a53b7507b" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +91,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controller/ResetController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
+            <state relative-caret-position="268">
               <caret line="41" column="43" lean-forward="true" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -309,7 +295,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583654482746" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583654957867" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resources/pics" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -447,9 +433,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8590476" visible="true" weight="0.18955651" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8590476" visible="true" weight="0.18955651" />
       <window_info id="Structure" order="1" sideWeight="0.14095238" side_tool="true" weight="0.2949886" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -458,12 +443,12 @@
       <window_info id="Favorites" order="6" sideWeight="0.14095238" side_tool="true" weight="0.2949886" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3277849" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32771084" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32771084" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39948782" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3277849" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32771084" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32891566" />
@@ -889,7 +874,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/ResetController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
+        <state relative-caret-position="268">
           <caret line="41" column="43" lean-forward="true" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
