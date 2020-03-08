@@ -2,21 +2,19 @@ package view.question;
 
 import common.Utils;
 import model.Question;
-
-
 import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.*;
 
-
+/**
+ * AnswerView class contains ImageView and ChoiceView
+ */
 public class AnswerView extends JPanel implements Observer {
     private ImageView imageView;
     private ChoiceView choiceView;
 
     public AnswerView() {
-//        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setLayout(new BorderLayout());
         setBackground(new Color(255,255,255));
         imageView = null;
@@ -35,27 +33,26 @@ public class AnswerView extends JPanel implements Observer {
 
         Question question = (Question) object;
 
-        //Update image of this question
+        //update image
         if(imageView != null)
             remove(imageView);
 
         imageView = new ImageView();
         String imagePath = question.getPictureFilePath();
         imageView.setImage(imagePath);
-//        imageView.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(imageView, BorderLayout.NORTH);
 
 
-        //Update choiceView of question area
+        //update choice
         if(choiceView != null)
             remove(choiceView);
         choiceView = createChoiceView(question);
         add(choiceView, BorderLayout.CENTER);
         choiceView.displayChoice(question);
         revalidate();
-        System.out.println("Multiple Choice");
     }
 
+    //create choice view according to different question types
     private ChoiceView createChoiceView(Question question) {
         ChoiceView choiceView;
         String type = question.getQuestionType();
@@ -80,6 +77,5 @@ public class AnswerView extends JPanel implements Observer {
     public ChoiceView getChoiceView() {
         return choiceView;
     }
-
 
 }

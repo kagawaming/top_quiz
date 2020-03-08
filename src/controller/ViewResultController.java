@@ -1,15 +1,18 @@
 package controller;
 
+import common.Utils;
 import model.QuestionStatistic;
 import model.QuestionTime;
 import view.performance.ResultView;
 import view.performance.TimeView;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * ViewResultController class controls view result button
+ */
 public class ViewResultController implements ActionListener {
     private QuestionStatistic questionStatistic;
     private QuestionTime questionTime;
@@ -21,31 +24,16 @@ public class ViewResultController implements ActionListener {
         this.timeView = timeView;
     }
 
+    //show quiz result once view result button has been selected after end the quiz
     @Override
     public void actionPerformed(ActionEvent event) {
         if(event.getActionCommand().equals("view result")){
+            Utils.setSound("resources/audios/bubbles.wav");
             timeView.stopTimer();
             showResultView();
-        }
-//        else if(event.getActionCommand().equals("continue")){
-//            timeView.startTimer();
-//        }
-//
-    }
 
-//    private void showResultDialog() {
-//        int dialogButton = JOptionPane.OK_CANCEL_OPTION;
-//        JLabel msgLabel = new JLabel("Are you sure to submit the quiz?");
-////        msgLabel.setFont(Utils.getFormatFont(Font.BOLD | Font.ITALIC, 16));
-//
-//        int dialogRes = JOptionPane.showConfirmDialog(null, msgLabel, "", dialogButton);
-//
-//        if (dialogRes == JOptionPane.OK_OPTION) {
-//            showResultView();
-//        } else {
-//            timeView.startTimer();
-//        }
-//    }
+        }
+    }
 
     private void showResultView(){
         JPanel resultView = new ResultView(questionStatistic);

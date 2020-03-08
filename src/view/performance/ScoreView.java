@@ -1,10 +1,14 @@
 package view.performance;
 
+import common.FormatHelper;
 import model.QuestionStatistic;
-import util.FormatHelper;
 
 import javax.swing.*;
 
+/**
+ * ScoreView class contains totals score, right number, wrong number
+ * and total answered question number
+ */
 public class ScoreView extends JPanel {
     private JLabel scoreLabel;
     private JLabel rightNumberLabel;

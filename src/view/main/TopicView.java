@@ -1,25 +1,27 @@
 package view.main;
 
-import com.sun.tools.corba.se.idl.toJavaPortable.Helper;
-import util.FormatHelper;
-
+import common.FormatHelper;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TopicView class contains quiz logo, username and all topics
+ */
 public class TopicView extends JPanel{
     private List<JRadioButton> topicRadioButtons = new ArrayList<>();
 
     private JLabel logo = FormatHelper.setImageLabel(150, 120, "src/resources/pics/0.jpeg");
     private JLabel nameLabel = new JLabel("");
-    private JLabel topicLabel = new JLabel("TOPICS");
+    private JLabel topicLabel = new JLabel(" TOPICS");
 
     public TopicView(List<String> topics) {
+//        FormatHelper.setMainPanelBorder(this, "");
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(logo);
-        nameLabel.setFont(FormatHelper.setTitleFont(18));
+        nameLabel.setFont(FormatHelper.setTitleFont(20));
         nameLabel.setMaximumSize(new Dimension(150, 50));
         add(nameLabel);
 
@@ -31,7 +33,7 @@ public class TopicView extends JPanel{
         int topicNumber = 0;
         for (String topic : topics) {
             topicRadioButton = new JRadioButton(topic);
-            topicRadioButton.setFont(FormatHelper.setTextFont(12));
+            topicRadioButton.setFont(FormatHelper.setTextFont(15));
             topicRadioButtons.add(topicRadioButton);
             buttonGroup.add(topicRadioButton);
             add(topicRadioButton);

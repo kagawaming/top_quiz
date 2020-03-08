@@ -1,8 +1,11 @@
 package model;
 
+
+/**
+ * TopicStatistic class works on topic performance
+ */
 public class TopicStatistic {
     private String topic;
-
     private int rightNum = 0;
     private int totalAnsweredNum = 0;
     private int score = 0;

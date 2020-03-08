@@ -1,34 +1,25 @@
 package view.question;
 
 import model.Question;
-import view.PuzzleEx;
-import view.performance.TimeView;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * ContentView class contains question content
+ */
 public class ContentView extends JPanel implements Observer {
 
     private JTextArea contentArea;
-
-//    private Question question;
 
 
     public ContentView() {
         setBackground(new Color(255,255,255));
         contentArea = new JTextArea(10, 30);
-//        contentArea.setFont(Utils.getFormatFont());
         contentArea.setLineWrap(true);
-//        add(contentArea);
-//        PuzzleEx puzzleEx = new PuzzleEx();
-//        add(puzzleEx);
-
 
         add(contentArea);
-//        add(new ImageView());
-
     }
 
 

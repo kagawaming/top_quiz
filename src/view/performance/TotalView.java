@@ -1,6 +1,6 @@
 package view.performance;
 
-import common.Utils;
+import common.FormatHelper;
 import model.QuestionStatistic;
 import model.TopicStatistic;
 import org.jfree.chart.ChartFactory;
@@ -12,14 +12,15 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.DefaultCategoryDataset;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * TotalView class contains bar chart by using JFree Chart library
+ * to show right numbers under different topics
+ */
 public class TotalView extends JPanel {
-    private static final int VIEW_HEIGHT = 280;
     private QuestionStatistic questionStatistic;
 
     public TotalView(QuestionStatistic questionStatistic) {
@@ -37,6 +38,7 @@ public class TotalView extends JPanel {
         return dataSet;
     }
 
+    //create chart
     private JFreeChart createChart(DefaultCategoryDataset dataSet){
         String chartTitle = "All Topics Right Number";
 
@@ -47,23 +49,24 @@ public class TotalView extends JPanel {
                 dataSet,
                 PlotOrientation.VERTICAL,
                 false, true, false);
-        barChart.setTitle(new TextTitle(chartTitle, Utils.getBorderTitleFont(16)));
+        barChart.setTitle(new TextTitle(chartTitle, FormatHelper.getBorderTitleFont(16)));
 
-        // Apply some styles
+
         CategoryPlot categoryPlot = (CategoryPlot) barChart.getPlot();
-        // Set Y axis font and range
+        // set Y axis
         NumberAxis numberAxis = (NumberAxis) categoryPlot.getRangeAxis();
-        numberAxis.setTickLabelFont(Utils.getFormatFont(Font.ITALIC | Font.BOLD, 12));
-        numberAxis.setLabelFont(Utils.getFormatFont(Font.ITALIC | Font.BOLD, 14));
+        numberAxis.setTickLabelFont(FormatHelper.getFormatFont(Font.ITALIC | Font.BOLD, 12));
+        numberAxis.setLabelFont(FormatHelper.getFormatFont(Font.ITALIC | Font.BOLD, 14));
         numberAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 
-        // Set X axis font
+        // set X axis
         CategoryAxis categoryAxis = categoryPlot.getDomainAxis();
-        categoryAxis.setTickLabelFont(Utils.getFormatFont(Font.ITALIC | Font.BOLD, 12));
+        categoryAxis.setTickLabelFont(FormatHelper.getFormatFont(Font.ITALIC | Font.BOLD, 12));
 
         return barChart;
     }
 
+    //draw bar graph
     private void drawBarGraph() {
         DefaultCategoryDataset dataSet = createDataset();
         JFreeChart chart = createChart(dataSet);
@@ -71,4 +74,6 @@ public class TotalView extends JPanel {
         chartPanel.setPreferredSize(new java.awt.Dimension(300, 250));
         add(chartPanel);
     }
+
+
 }

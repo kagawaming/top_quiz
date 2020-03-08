@@ -1,12 +1,10 @@
 package view.main;
 
+import common.FormatHelper;
 import model.QuestionStatistic;
-import util.FormatHelper;
 import view.performance.ChartView;
-import view.performance.ResultView;
 import view.performance.ScoreView;
 import view.performance.TimeView;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
@@ -19,7 +17,7 @@ public class PerformanceView extends JPanel implements Observer {
     private TimeView timeView;
     private ChartView chartView;
     private ScoreView scoreView;
-    private ResultView resultView;
+
 
     public PerformanceView() {
         FormatHelper.setMainPanelBorder(this, "PERFORMANCE");
@@ -46,7 +44,6 @@ public class PerformanceView extends JPanel implements Observer {
         QuestionStatistic quesStatistic = (QuestionStatistic) o;
         scoreView.update(quesStatistic);
         chartView.update(quesStatistic);
-//        summaryView.update(quesStatistic);
     }
 
     public TimeView getTimeView() {

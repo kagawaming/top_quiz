@@ -3,10 +3,12 @@ package controller;
 import model.QuestionBank;
 import model.QuestionTime;
 import view.main.TopicView;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * TimingController class controls timer
+ */
 public class TimingController implements ActionListener {
     private TopicView topicView;
     private QuestionTime questionTime;
@@ -21,7 +23,7 @@ public class TimingController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         questionTime.publish();
-        // If time running out, change to next question
+        // ff time running out, go to next question
         if(questionTime.isTimeRunOut())
             nextQuestion();
     }
@@ -30,8 +32,9 @@ public class TimingController implements ActionListener {
         String topic = topicView.getTopic();
         if(topic == null)
             return;
-        // Reset left time
+        // reset left time
         questionTime.resetLeftTime();
+        //update question
         questionBank.publish(topic);
     }
 

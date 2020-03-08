@@ -16,6 +16,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+/**
+ * MyButton class creates component of puzzle game
+ */
 class MyButton extends JButton {
 
     private boolean isLastButton;
@@ -34,11 +38,13 @@ class MyButton extends JButton {
         initUI();
     }
 
+    //initialize puzzle button component
     private void initUI() {
 
         isLastButton = false;
         BorderFactory.createLineBorder(Color.gray);
 
+        //add listener and handler
         addMouseListener(new MouseAdapter() {
 
             @Override
@@ -53,6 +59,7 @@ class MyButton extends JButton {
         });
     }
 
+    //last button is left blank
     public void setLastButton() {
 
         isLastButton = true;
@@ -63,6 +70,11 @@ class MyButton extends JButton {
         return isLastButton;
     }
 }
+
+/**
+ * PuzzleEx class creates a puzzle game using button component
+ * referred to @Jan Bodnar
+ */
 public class PuzzleEx extends JPanel {
 
     private JPanel panel;
@@ -79,15 +91,17 @@ public class PuzzleEx extends JPanel {
 
     private final int DESIRED_WIDTH = 300;
 
-    public PuzzleEx() {
 
-        initUI();
+    public PuzzleEx(String imagePath) {
+
+        initUI(imagePath);
     }
 
-    private void initUI() {
+    private void initUI(String imagePath) {
 
         solution = new ArrayList<>();
 
+        //initialize a 3 * 4 puzzle frame
         solution.add(new Point(0, 0));
         solution.add(new Point(0, 1));
         solution.add(new Point(0, 2));
@@ -105,11 +119,11 @@ public class PuzzleEx extends JPanel {
 
         panel = new JPanel();
         panel.setBorder(BorderFactory.createLineBorder(Color.gray));
-//        panel.setLayout(new GridLayout(4, 3, 0, 0));
         panel.setLayout(new GridLayout(4, 3, 0, 0));
 
+        //load puzzle image
         try {
-            source = loadImage();
+            source = loadImage(imagePath);
             int h = getNewHeight(source.getWidth(), source.getHeight());
             resized = resizeImage(source, DESIRED_WIDTH, h,
                     BufferedImage.TYPE_INT_ARGB);
@@ -124,6 +138,7 @@ public class PuzzleEx extends JPanel {
 
         add(panel, BorderLayout.CENTER);
 
+        //creates image for each piece
         for (int i = 0; i < 4; i++) {
 
             for (int j = 0; j < 3; j++) {
@@ -147,6 +162,7 @@ public class PuzzleEx extends JPanel {
             }
         }
 
+        //shuffle each piece
         Collections.shuffle(buttons);
         buttons.add(lastButton);
 
@@ -158,12 +174,8 @@ public class PuzzleEx extends JPanel {
             btn.addActionListener(new ClickAction());
         }
 
-//        pack();
-//        setTitle("Puzzle");
-//        setResizable(false);
-//        setLocationRelativeTo(null);
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
 
     private int getNewHeight(int w, int h) {
 
@@ -172,10 +184,9 @@ public class PuzzleEx extends JPanel {
         return newHeight;
     }
 
-    private BufferedImage loadImage() throws IOException {
+    private BufferedImage loadImage(String imagePath) throws IOException {
 
-        BufferedImage bimg = ImageIO.read(new File("src/resources/pics/0.jpeg"));
-
+        BufferedImage bimg = ImageIO.read(new File(imagePath));
         return bimg;
     }
 
@@ -190,6 +201,7 @@ public class PuzzleEx extends JPanel {
         return resizedImage;
     }
 
+    //action handler
     private class ClickAction extends AbstractAction {
 
         @Override
@@ -232,6 +244,7 @@ public class PuzzleEx extends JPanel {
         }
     }
 
+    //check if puzzle is completed correctly
     public ArrayList<String> checkSolution() {
 
         java.util.List<Point> current = new ArrayList<>();
@@ -242,8 +255,7 @@ public class PuzzleEx extends JPanel {
         }
 
         if (compareList(solution, current)) {
-//            JOptionPane.showMessageDialog(panel, "Finished",
-//                    "Congratulation", JOptionPane.INFORMATION_MESSAGE);
+
             ret.add("Finish");
         }
         return ret;
@@ -254,15 +266,4 @@ public class PuzzleEx extends JPanel {
         return ls1.toString().contentEquals(ls2.toString());
     }
 
-//    public static void main(String[] args) {
-//
-//        EventQueue.invokeLater(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                PuzzleEx puzzle = new PuzzleEx();
-//                puzzle.setVisible(true);
-//            }
-//        });
-//    }
 }

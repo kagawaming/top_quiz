@@ -4,6 +4,10 @@ import common.Utils;
 import java.util.*;
 import java.io.File;
 
+
+/**
+ * Question class contains question data
+ */
 public class Question {
     private String questionContent;
     private String topic;
@@ -26,6 +30,11 @@ public class Question {
         this.audioName = audioName;
     }
 
+    /**
+     * isAnsweredRight method checks if answer is right
+     * @param userAnswer user's answer
+     * @return boolean value true if answer is right and false if answer is wrong
+     */
     public boolean isAnsweredRight(List<String> userAnswer) {
         if (userAnswer == null) {
             return false;
@@ -41,14 +50,17 @@ public class Question {
         return true;
     }
 
+
     public boolean isAnswered(){
         return this.isAnswered;
     }
+
 
     public void questionAnswered(){
         this.isAnswered = true;
     }
 
+    //getters
     public String getQuestionContent() {
         return this.questionContent;
     }
@@ -74,12 +86,12 @@ public class Question {
     }
 
     public String getPictureFilePath(){
-        return new File(Utils.PICATURE_DIR, String.format("%s.jpeg", pictureName)).getPath();
-//        return "src/resources/pics/0.jpeg";
+        return new File(Utils.PICTURE_DIR, String.format("%s.jpeg", pictureName)).getPath();
+
     }
 
     public String getAudioFilePath(){
-        return new File(Utils.PICATURE_DIR, String.format("%s.jpeg", audioName)).getPath();
+        return new File(Utils.PICTURE_DIR, String.format("%s.jpeg", audioName)).getPath();
     }
 
 }

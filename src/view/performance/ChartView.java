@@ -1,11 +1,9 @@
 package view.performance;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.text.AttributedString;
-
-
+import common.FormatHelper;
 import model.QuestionStatistic;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -15,9 +13,11 @@ import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
-import util.FormatHelper;
 
 
+/**
+ * ChartView class contains performance chart using Jfree Chart library
+ */
 public class ChartView extends JPanel {
     public ChartView() {
         this.setPreferredSize(new Dimension(300, 250));
@@ -26,13 +26,12 @@ public class ChartView extends JPanel {
     public void update(QuestionStatistic questionStatistic) {
         removeAll();
         drawChart(questionStatistic);
-        System.out.println("Close to chart");
     }
     private void drawChart(QuestionStatistic questionStatistic) {
         int rightAns = questionStatistic.getRightAns();
         int wrongAns = questionStatistic.getTotalAnsweredNum() - rightAns;
 
-        // Init dataset
+        // initialize dataset
         PieDataset pieDataSet = this.createDataset(rightAns, wrongAns);
         JFreeChart chart = createChart(pieDataSet);
 
@@ -43,6 +42,7 @@ public class ChartView extends JPanel {
         add(chartPanel);
     }
 
+    //create chart dataset
     private PieDataset createDataset(int right, int wrong) {
         final DefaultPieDataset result = new DefaultPieDataset();
         result.setValue("Right", right);
@@ -51,6 +51,7 @@ public class ChartView extends JPanel {
 
     }
 
+    //create chart
     private JFreeChart createChart(PieDataset dataset) {
         String chartTitle = "Right and Wrong Numbers";
 
@@ -62,7 +63,7 @@ public class ChartView extends JPanel {
                 false
         );
 
-        // Apply some styles
+
         chart.setTitle(new TextTitle(chartTitle, FormatHelper.setTitleFont(16)));
 
 
@@ -71,7 +72,6 @@ public class ChartView extends JPanel {
         plot.setLabelGenerator(new CustomLabelGenerator());
 
         plot.setStartAngle(290);
-//        plot.setDirection(Rotation.CLOCKWISE);
         plot.setForegroundAlpha(0.5f);
         plot.setNoDataMessage("No data to display");
 

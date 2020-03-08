@@ -1,13 +1,17 @@
 package view.performance;
 
 import model.QuestionTime;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+
+/**
+ * TimeView class contains time count down
+ * which will change color when 1/3 time left
+ */
 public class TimeView extends JPanel implements Observer {
     private JLabel timeLabel;
     private Timer timer;
@@ -20,22 +24,7 @@ public class TimeView extends JPanel implements Observer {
         timeLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 
         add(timeLabel);
-//        displayTime(0);
     }
-
-//    private void displayTime(int totalTime){
-//        removeAll();
-//
-////        cntTimer.start(currentQuestion.getGivenTime());
-//        timeLabel.setFont(new Font("Comic Sans",Font.BOLD ,18));
-//        timeLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-////        displayGif(urlname);
-//        add(timeLabel);
-////        add(panelGif);
-//
-//        revalidate();
-//        repaint();
-//    }
 
     public void addTimingListener(ActionListener listener) {
         timer = new Timer(QuestionTime.DELAY_TIME * 1000, listener);
@@ -58,9 +47,6 @@ public class TimeView extends JPanel implements Observer {
         if (questionTime.isRedAlert()) {
             timeLabel.setText("<html><font size='5' color=blue> Time: </font> <font size='5'color=red>" + leftTime + "</font></html>");
         }
-//        System.out.println(leftTime);
-//        setProgressBarValue(leftTime);
-//        checkAndShowEmoji(questionTime);
     }
 
 }

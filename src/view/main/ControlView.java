@@ -1,8 +1,5 @@
 package view.main;
 
-import controller.TopicController;
-import model.QuestionBank;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +11,9 @@ public class ControlView {
     private LoginView loginView;
     private QuestionView questionView;
 
-
+    /**
+     * ControlView class controls the switch between LoginView and QuestionView
+     */
     public ControlView() {
         cardLayout = new CardLayout();
         controlPanel = new JPanel();
@@ -23,7 +22,6 @@ public class ControlView {
 
 
         controlPanel.setLayout(cardLayout);
-
         controlPanel.add(loginView, "1");
         controlPanel.add(questionView, "2");
 

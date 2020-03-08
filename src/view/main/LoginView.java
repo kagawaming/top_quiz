@@ -1,13 +1,15 @@
 package view.main;
 
-import util.FormatHelper;
+import common.FormatHelper;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * LoginView class contains login view to ask user enter username
+ */
 public class LoginView extends JPanel {
 
     private JLabel loginInfoLabel;
@@ -64,4 +66,5 @@ public class LoginView extends JPanel {
     public JTextField getLoginTextField() {
         return loginTextField;
     }
+
 }

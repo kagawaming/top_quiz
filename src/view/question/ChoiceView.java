@@ -1,5 +1,6 @@
 package view.question;
 
+import common.FormatHelper;
 import model.Question;
 import view.PuzzleEx;
 import view.SwingDnDFrame;
@@ -8,21 +9,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+
+/**
+ * ChoiceView class is an abstract class
+ * contains displayChoice and getUserAnswer functions
+ */
 public abstract class ChoiceView extends JPanel {
 
+    //display choice according to different question types
     public abstract void displayChoice(Question question);
 
+    //get user answers according to different question types
     public abstract ArrayList<String> getUserAnswer();
 }
 
 
-//single choice viewer
+//single choice implementation
 class SingleChoiceImpl extends ChoiceView {
     private ButtonGroup choiceGroup;
     private ArrayList<JRadioButton> choiceButtons;
 
     public SingleChoiceImpl() {
-//        Utils.initSubPanelBorder(this, TITLE);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(255,255,255));
     }
@@ -34,7 +41,7 @@ class SingleChoiceImpl extends ChoiceView {
 
         for (String choice : question.getChoices()) {
             JRadioButton button = new JRadioButton(choice);
-            button.setFont(util.FormatHelper.setTextFont(15));
+            button.setFont(FormatHelper.setTextFont(15));
             choiceGroup.add(button);
             choiceButtons.add(button);
             add(button);
@@ -53,22 +60,22 @@ class SingleChoiceImpl extends ChoiceView {
     }
 }
 
+
+//multiple choice implementation
 class MultipleChoiceImpl extends ChoiceView {
-//    private static final String TITLE = "Multiple Choice";
     private ArrayList<JCheckBox> checkBoxes;
 
     public MultipleChoiceImpl() {
-//        Utils.initSubPanelBorder(this, TITLE);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(255,255,255));
     }
     @Override
     public void displayChoice(Question question) {
-        checkBoxes = new ArrayList<JCheckBox>();
+        checkBoxes = new ArrayList<>();
         for (String choice: question.getChoices()) {
             System.out.println(choice);
             JCheckBox box = new JCheckBox(choice);
-            box.setFont(util.FormatHelper.setTextFont(15));
+            box.setFont(FormatHelper.setTextFont(15));
             checkBoxes.add(box);
             add(box);
         }
@@ -89,22 +96,25 @@ class MultipleChoiceImpl extends ChoiceView {
     }
 }
 
+//input text implementation
 class InputTextImpl extends ChoiceView {
-//    private static final int ROW_NUM = 10;
-//    private static final int COLUMN_NUM = 19;
 
-//    private static final String TITLE = "Your Answer";
     private JTextArea inputArea;
 
     public InputTextImpl() {
-//        Utils.initSubPanelBorder(this, TITLE);
+        FormatHelper.setSubPanelBorder(this, "Your Answer");
         setBackground(new Color(255,255,255));
         inputArea = new JTextArea(10, 20);
+
+        inputArea.setFont(FormatHelper.setTextFont(15));
+        inputArea.setLineWrap(true);
+
         add(inputArea);
     }
+
     @Override
     public void displayChoice(Question question) {
-        inputArea.setFont(util.FormatHelper.setTextFont(10));
+        inputArea.setFont(FormatHelper.setTextFont(20));
     }
 
     @Override
@@ -115,27 +125,23 @@ class InputTextImpl extends ChoiceView {
     }
 }
 
+//puzzle game implementation
 class PuzzleImpl extends ChoiceView {
-//    private static final int ROW_NUM = 10;
-//    private static final int COLUMN_NUM = 19;
 
-    //    private static final String TITLE = "Your Answer";
-    private JTextArea inputArea;
     private PuzzleEx puzzle;
 
     public PuzzleImpl() {
-//        Utils.initSubPanelBorder(this, TITLE);
         setBackground(new Color(255,255,255));
-//        inputArea = new JTextArea(10, 20);
-//        add(inputArea);
     }
+
     @Override
     public void displayChoice(Question question) {
+        //use multi-threading to run puzzle game
         EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                puzzle = new PuzzleEx();
+                puzzle = new PuzzleEx(question.getPictureFilePath());
                 puzzle.setVisible(true);
                 add(puzzle);
             }
@@ -144,33 +150,28 @@ class PuzzleImpl extends ChoiceView {
 
     @Override
     public ArrayList<String> getUserAnswer() {
-
         return puzzle.checkSolution();
     }
 }
 
 
+//drag and drop implementation
 class DAndDImpl extends ChoiceView {
-//    private static final int ROW_NUM = 10;
-//    private static final int COLUMN_NUM = 19;
-
-    //    private static final String TITLE = "Your Answer";
     private JTextArea inputArea;
     private SwingDnDFrame swingDnDFrame;
 
     public DAndDImpl() {
-//        Utils.initSubPanelBorder(this, TITLE);
         setBackground(new Color(255,255,255));
-//        inputArea = new JTextArea(10, 20);
-//        add(inputArea);
     }
+
     @Override
     public void displayChoice(Question question) {
-        EventQueue.invokeLater(new Runnable() {
 
+        //use multi-threading to run drag and drop
+        EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                swingDnDFrame = new SwingDnDFrame();
+                swingDnDFrame = new SwingDnDFrame(question.getChoices());
                 add(swingDnDFrame);
             }
         });

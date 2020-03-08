@@ -1,16 +1,14 @@
 package model;
 
 import common.Utils;
-
-
 import java.util.*;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 
+/**
+ * QuestionBank class gets question banks from input txt file
+ */
 public class QuestionBank extends Observable{
     private static Map<String, List<Question>> topicQuestionMap = new HashMap<String, List<Question>>();
-
     private String currentTopic = null;
     private Question currentQuestion = null;
 
@@ -92,7 +90,7 @@ public class QuestionBank extends Observable{
         List<Question> topicQuestions = topicQuestionMap.get(topic);
         if(topicQuestions == null)
             return;
-        // Check if all questions have been answered to avoid infinite loop in the random selection
+        // check if all questions have been answered to avoid infinite loop in the random selection
         for(Question question : topicQuestions){
             if(!question.isAnswered())
                 allAnswered = false;

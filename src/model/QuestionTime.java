@@ -2,14 +2,18 @@ package model;
 
 import java.util.Observable;
 
+/**
+ * QuestionTime class contains question timer functions
+ */
 public class QuestionTime extends Observable {
-    // Total answer time is 15s
+    // answer time for each question is 30s
     public static final int TOTAL_TIME = 30;
-    // Decrease by 1s each time
+    // decrease by 1s each time
     public static final int DELAY_TIME = 1;
 
     private int leftTime = TOTAL_TIME;
 
+    //set change and notify observers
     public void publish(){
         leftTime -= DELAY_TIME;
 
@@ -27,24 +31,7 @@ public class QuestionTime extends Observable {
         return false;
     }
 
-//    public boolean isShowSmileEmotion(){
-//        if(leftTime > (TOTAL_TIME/3) *2)
-//            return true;
-//        return false;
-//    }
-//
-//    public boolean isShowCryEmotion(){
-//        if(leftTime < (TOTAL_TIME/3))
-//            return true;
-//        return false;
-//    }
-//
-//    public boolean isShowNeutralEmomotion(){
-//        if(!isShowSmileEmotion() && !isShowCryEmotion())
-//            return true;
-//        return false;
-//    }
-
+    //change time digit to red when 1/3 time left
     public boolean isRedAlert() {
         if(leftTime < (TOTAL_TIME/3))
             return true;
@@ -53,7 +40,6 @@ public class QuestionTime extends Observable {
 
     public void resetLeftTime(){
         leftTime = TOTAL_TIME;
-
         setChanged();
         notifyObservers();
     }

@@ -1,13 +1,14 @@
 package model;
 
 import java.util.Observable;
-
 import java.util.*;
 
+/**
+ * QuestionStatistic class contains question performance statistics
+ */
 public class QuestionStatistic extends Observable {
     private static final double SKILL_ACCURACY_THRESHOLD = 0.7;
     private static final int ABILITITY_CHECK_THRESHOLD = 3;
-
     private Map<String, TopicStatistic> topicStatisticMap = new HashMap<>();
     private int rightNum = 0;
     private int totalAnsweredNum = 0;
@@ -60,8 +61,7 @@ public class QuestionStatistic extends Observable {
 
         for(String topic : topicStatisticMap.keySet()){
             TopicStatistic topicStatistic = topicStatisticMap.get(topic);
-            if(topicStatistic.getTotalAnsweredNum() > ABILITITY_CHECK_THRESHOLD &&
-                    topicStatistic.getAccuracy() >= SKILL_ACCURACY_THRESHOLD){
+            if(topicStatistic.getAccuracy() >= SKILL_ACCURACY_THRESHOLD){
                 topics.add(topic);
             }
         }
@@ -77,8 +77,7 @@ public class QuestionStatistic extends Observable {
 
         for(String topic : topicStatisticMap.keySet()){
             TopicStatistic topicStatistic = topicStatisticMap.get(topic);
-            if(topicStatistic.getTotalAnsweredNum() > ABILITITY_CHECK_THRESHOLD &&
-                    topicStatistic.getAccuracy() < (1 -SKILL_ACCURACY_THRESHOLD))
+            if(topicStatistic.getAccuracy() < (1 -SKILL_ACCURACY_THRESHOLD))
                 topics.add(topic);
         }
         return topics;
