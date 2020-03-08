@@ -35,6 +35,15 @@ public class QuestionBank extends Observable{
         notifyObservers(currentQuestion);
     }
 
+    public void reset() {
+        topicQuestionMap.clear();
+        loadQuestions(Utils.QUESTIONS_FILE);
+        currentTopic = null;
+        currentQuestion = null;
+        setChanged();
+        notifyObservers(currentQuestion);
+    }
+
     private static void loadQuestions(String inputQuestionsPath){
         String questionsContent = Utils.readFile(inputQuestionsPath);
         String[] questions = questionsContent.split("<%>");

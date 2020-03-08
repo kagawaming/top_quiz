@@ -35,7 +35,7 @@ public class SubmitController implements ActionListener {
             Utils.setSound("resources/audios/piston-1.wav");
             timeView.stopTimer();
             buttonView.disableButton();
-            buttonView.enableStartButton();
+            buttonView.disableStartButton();
             buttonView.enableViewResultButton();
             showResultDialog();
 

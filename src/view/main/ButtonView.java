@@ -13,6 +13,7 @@ public class ButtonView extends JPanel {
     private JButton nextButton;
     private JButton submitButton;
     private JButton viewResultButton;
+    private JButton resetButton;
 
     public ButtonView() {
         setLayout(new FlowLayout());
@@ -36,12 +37,16 @@ public class ButtonView extends JPanel {
         viewResultButton.setActionCommand("view result");
 
         add(viewResultButton);
+
+        resetButton = new JButton("Reset");
+        resetButton.setActionCommand("reset");
+
+        add(resetButton);
     }
 
     public void enableButton() {
         nextButton.setEnabled(true);
         submitButton.setEnabled(true);
-
     }
 
     public void disableButton() {
@@ -79,6 +84,9 @@ public class ButtonView extends JPanel {
 
     public void addViewResultListener(ActionListener listener){
         viewResultButton.addActionListener(listener);
+    }
+    public void addResetListener(ActionListener listener){
+        resetButton.addActionListener(listener);
     }
 
 }

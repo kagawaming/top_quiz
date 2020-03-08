@@ -26,6 +26,17 @@ public class QuestionStatistic extends Observable {
         }
     }
 
+    public void reset() {
+        rightNum = 0;
+        totalAnsweredNum = 0;
+        score = 0;
+        for (Map.Entry<String, TopicStatistic> entry : topicStatisticMap.entrySet()) {
+            entry.setValue(new TopicStatistic(entry.getKey()));
+        }
+        setChanged();
+        notifyObservers();
+    }
+
     /**
      * Make a statistic of total right and wrong answers according to the user's answer
      * @param isAnswerRight a flag indicating if user's answer is right or not

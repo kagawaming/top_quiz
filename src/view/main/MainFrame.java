@@ -61,12 +61,14 @@ public class MainFrame extends JFrame {
         TimingController timingController = new TimingController(topicView, questionTime, questionBank);
         SubmitController submitController = new SubmitController(questionTime, questionStatistic, timeView, buttonView);
         ViewResultController viewResultController = new ViewResultController(questionTime, questionStatistic, timeView);
+        ResetController resetController = new ResetController(questionBank, questionStatistic, questionTime, topicView, questionView.getAnswerView(), timeView, buttonView);
 
         topicView.addTopicSelectionListener(topicController);
         buttonView.addStartListener(startController);
         buttonView.addNextListener(nextController);
         buttonView.addSubmitListener(submitController);
         buttonView.addViewResultListener(viewResultController);
+        buttonView.addResetListener(resetController);
         timeView.addTimingListener(timingController);
 
         questionBank.addObserver(questionView.getContentView());
