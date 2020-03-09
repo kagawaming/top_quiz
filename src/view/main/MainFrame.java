@@ -55,13 +55,13 @@ public class MainFrame extends JFrame {
 
 
         // add action listeners, observers
-        TopicController topicController = new TopicController(questionBank, buttonView, answerView);
         StartController startController = new StartController(questionBank, topicView, timeView, buttonView, answerView);
         NextController nextController = new NextController(questionBank, questionStatistic, questionTime, topicView, questionView.getAnswerView(), timeView);
         TimingController timingController = new TimingController(topicView, questionTime, questionBank);
         SubmitController submitController = new SubmitController(questionTime, questionStatistic, timeView, buttonView);
         ViewResultController viewResultController = new ViewResultController(questionTime, questionStatistic, timeView);
-        ResetController resetController = new ResetController(questionBank, questionStatistic, questionTime, topicView, questionView.getAnswerView(), timeView, buttonView);
+        TopicController topicController = new TopicController(questionBank, buttonView, submitController);
+        ResetController resetController = new ResetController(questionBank, questionStatistic, questionTime, topicView, questionView.getAnswerView(), timeView, buttonView, submitController);
 
         topicView.addTopicSelectionListener(topicController);
         buttonView.addStartListener(startController);

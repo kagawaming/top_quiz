@@ -20,6 +20,7 @@ public class SubmitController implements ActionListener {
     private QuestionTime questionTime;
     private ButtonView buttonView;
     private TimeView timeView;
+    private boolean isSubmitted = false;
 
     public SubmitController(QuestionTime questionTime, QuestionStatistic questionStatistic, TimeView timeView, ButtonView buttonView) {
         this.questionTime = questionTime;
@@ -42,6 +43,14 @@ public class SubmitController implements ActionListener {
         }
     }
 
+    public void reset() {
+        this.isSubmitted = false;
+    }
+
+    public boolean getIsSubmitted() {
+        return this.isSubmitted;
+    }
+
     //show dialog to ask users if they are sure to end the quiz
     private void showResultDialog() {
         int dialogButton = JOptionPane.OK_CANCEL_OPTION;
@@ -51,6 +60,7 @@ public class SubmitController implements ActionListener {
 
         if (dialogRes == JOptionPane.OK_OPTION) {
             showResultView();
+            this.isSubmitted = true;
         } else {
             timeView.startTimer();
             buttonView.enableButton();

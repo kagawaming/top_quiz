@@ -2,7 +2,6 @@ package controller;
 
 import model.QuestionBank;
 import view.main.ButtonView;
-import view.question.AnswerView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,18 +12,23 @@ import java.awt.event.ActionListener;
 public class TopicController implements ActionListener {
     private QuestionBank questionBank;
     private ButtonView buttonView;
-    private AnswerView answerView;
+    private SubmitController submitController;
 
-    public TopicController(QuestionBank questionBank, ButtonView buttonView, AnswerView answerView) {
+    public TopicController(QuestionBank questionBank, ButtonView buttonView, SubmitController submitController) {
 
         this.questionBank = questionBank;
         this.buttonView = buttonView;
+        this.submitController = submitController;
     }
 
     //once topic has been selected, enable start button and disable other buttons
     public void actionPerformed(ActionEvent event) {
         String topic = event.getActionCommand();
-        buttonView.enableStartButton();
+        if (!submitController.getIsSubmitted()) {
+            buttonView.enableStartButton();
+        } else {
+            buttonView.disableStartButton();
+        }
         buttonView.disableButton();
     }
 }

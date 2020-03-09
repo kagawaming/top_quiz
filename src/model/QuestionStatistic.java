@@ -8,7 +8,6 @@ import java.util.*;
  */
 public class QuestionStatistic extends Observable {
     private static final double SKILL_ACCURACY_THRESHOLD = 0.7;
-    private static final int ABILITITY_CHECK_THRESHOLD = 3;
     private Map<String, TopicStatistic> topicStatisticMap = new HashMap<>();
     private int rightNum = 0;
     private int totalAnsweredNum = 0;

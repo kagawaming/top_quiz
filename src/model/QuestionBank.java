@@ -19,10 +19,6 @@ public class QuestionBank extends Observable{
         loadQuestions(Utils.QUESTIONS_FILE);
     }
 
-    public static void main(String[] args) {
-        loadQuestions(Utils.QUESTIONS_FILE);
-    }
-
     /**
      * Choose an unanswered question in a specified topic and notify observers
      * @param topic topic of the question
@@ -73,14 +69,10 @@ public class QuestionBank extends Observable{
                 points = Integer.valueOf(content[5]);
                 pictureName = content[6];
                 audioName = content[7];
-                System.out.println(questionContent);
-                System.out.println(topic);
-                System.out.println(questionType);
                 Question questionObj = new Question(questionContent, topic, questionType, choices, answers, points, pictureName, audioName);
                 addQuestion(questionObj);
             }
         }
-        System.out.println(" =====");
     }
 
     private static void addQuestion(Question question){
